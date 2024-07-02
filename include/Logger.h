@@ -4,53 +4,57 @@
 #include "noncopyable.h"
 
 #include <string>
-
+#include <iostream>
 
 /**
-* @brief 定义LOG宏
-*/
+ * @brief 定义LOG宏
+ */
 
-#define LOG_INFO(logmsgfmt, ...) \
-do \
-{ \
-    Logger& logger = Logger::instance(); \
-    logger.setLogLevel(INFO); \
-    char buf[1024] = {0}; \
-    snprintf(buf, 1024, logmsgfmt, ##__VA_ARGS__); \
-    logger.log(buf); \
-} while(0)
+#define LOG_INFO(logmsgfmt, ...)                                                 \
+    do                                                                           \
+    {                                                                            \
+        std::cout << __FILE__ << ":" << __LINE__ << ":" << __FUNCTION__ << ": "; \
+        Logger &logger = Logger::instance();                                     \
+        logger.setLogLevel(INFO);                                                \
+        char buf[1024] = {0};                                                    \
+        snprintf(buf, 1024, logmsgfmt, ##__VA_ARGS__);                           \
+        logger.log(buf);                                                         \
+    } while (0)
 
-#define LOG_ERROR(logmsgfmt, ...) \
-do \
-{ \
-    Logger& logger = Logger::instance(); \
-    logger.setLogLevel(ERROR); \
-    char buf[1024] = {0}; \
-    snprintf(buf, 1024, logmsgfmt, ##__VA_ARGS__); \
-    logger.log(buf); \
-} while(0)
+#define LOG_ERROR(logmsgfmt, ...)                                                \
+    do                                                                           \
+    {                                                                            \
+        std::cout << __FILE__ << ":" << __LINE__ << ":" << __FUNCTION__ << ": "; \
+        Logger &logger = Logger::instance();                                     \
+        logger.setLogLevel(ERROR);                                               \
+        char buf[1024] = {0};                                                    \
+        snprintf(buf, 1024, logmsgfmt, ##__VA_ARGS__);                           \
+        logger.log(buf);                                                         \
+    } while (0)
 
-#define LOG_FATAL(logmsgfmt, ...) \
-do \
-{ \
-    Logger& logger = Logger::instance(); \
-    logger.setLogLevel(FATAL); \
-    char buf[1024] = {0}; \
-    snprintf(buf, 1024, logmsgfmt, ##__VA_ARGS__); \
-    logger.log(buf); \
-} while(0)
-
+#define LOG_FATAL(logmsgfmt, ...)                                                \
+    do                                                                           \
+    {                                                                            \
+        std::cout << __FILE__ << ":" << __LINE__ << ":" << __FUNCTION__ << ": "; \
+        Logger &logger = Logger::instance();                                     \
+        logger.setLogLevel(FATAL);                                               \
+        char buf[1024] = {0};                                                    \
+        snprintf(buf, 1024, logmsgfmt, ##__VA_ARGS__);                           \
+        logger.log(buf);                                                         \
+        exit(-1);                                                                \
+    } while (0)
 
 #ifdef MUDEBUG
-#define LOG_DEBUG(logmsgfmt, ...) \
-do \
-{ \
-    Logger& logger = Logger::instance(); \
-    logger.setLogLevel(DEBUG); \
-    char buf[1024] = {0}; \
-    snprintf(buf, 1024, logmsgfmt, ##__VA_ARGS__); \
-    logger.log(buf); \
-} while(0)
+#define LOG_DEBUG(logmsgfmt, ...)                                                \
+    do                                                                           \
+    {                                                                            \
+        std::cout << __FILE__ << ":" << __LINE__ << ":" << __FUNCTION__ << ": "; \
+        Logger &logger = Logger::instance();                                     \
+        logger.setLogLevel(DEBUG);                                               \
+        char buf[1024] = {0};                                                    \
+        snprintf(buf, 1024, logmsgfmt, ##__VA_ARGS__);                           \
+        logger.log(buf);                                                         \
+    } while (0)
 #else
 #define LOG_DEBUG(logmsgfmt, ...)
 #endif
@@ -67,13 +71,13 @@ enum LogLevel
 };
 
 /**
-* @brief 输出一个日志类
-*/
+ * @brief 输出一个日志类
+ */
 class Logger : noncopyable
 {
 public:
     // 获取单例对象
-    static Logger& instance();
+    static Logger &instance();
 
     // 设置日志级别
     void setLogLevel(int level);
