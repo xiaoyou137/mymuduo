@@ -44,7 +44,7 @@ public:
     void disableReading() { events_ &= ~kReadEvent; update(); }
     void enableWriting() { events_ |= kWriteEvent; update(); }
     void disableWriting() { events_ &= ~kReadEvent; update(); }
-    void diableAll() { events_ = kNoneEvent; update(); }
+    void disableAll() { events_ = kNoneEvent; update(); }
 
     // 返回fd响应的事件状态
     bool isNoneEvent() const { return events_ == kNoneEvent; }

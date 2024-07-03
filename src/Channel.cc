@@ -22,7 +22,7 @@ void Channel::handleEvent(Timestamp receiveTime)
     if (tied_)
     {
         std::shared_ptr<void> guard = tie_.lock();
-        if(guard)
+        if (guard)
         {
             handleEventWithGuard(receiveTime);
         }
@@ -41,46 +41,44 @@ void Channel::tie(std::shared_ptr<void> &obj)
 
 void Channel::remove()
 {
-    //TODO:
-    //loop_->removeChannel(this);
+    loop_->removeChannel(this);
 }
 
 void Channel::update()
 {
-    // TODO:
-    // loop_->updateChannel(this);
+    loop_->updateChannel(this);
 }
 
 void Channel::handleEventWithGuard(Timestamp receiveTime)
 {
     // TODO: 添加日志输出
-    if((revents_ & EPOLLHUP) && !(revents_ & EPOLLIN))
+    if ((revents_ & EPOLLHUP) && !(revents_ & EPOLLIN))
     {
-        if(closeCallback_)
+        if (closeCallback_)
         {
             closeCallback_();
         }
     }
 
-    if(revents_ & EPOLLERR)
+    if (revents_ & EPOLLERR)
     {
-        if(errorCallback_)
+        if (errorCallback_)
         {
             errorCallback_();
         }
     }
 
-    if(revents_ & (EPOLLIN | EPOLLPRI))
+    if (revents_ & (EPOLLIN | EPOLLPRI))
     {
-        if(readCallback_)
+        if (readCallback_)
         {
             readCallback_(receiveTime);
         }
     }
 
-    if(revents_ & EPOLLOUT)
+    if (revents_ & EPOLLOUT)
     {
-        if(writeCallback_)
+        if (writeCallback_)
         {
             writeCallback_();
         }
