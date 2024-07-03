@@ -9,6 +9,7 @@
 #include <functional>
 #include <mutex>
 #include <vector>
+#include <memory>
 
 
 // 前置声明

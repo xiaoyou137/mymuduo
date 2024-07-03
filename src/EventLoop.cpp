@@ -50,7 +50,7 @@ EventLoop::EventLoop()
     , threadId_(CurrentThread::tid())
     , poller_(Poller::newDefaultPoller(this))
     , wakeupFd_(createEventfd())
-    , wakeupChannel_(std::make_unique<Channel>(this, wakeupFd_))
+    , wakeupChannel_(std::unique_ptr<Channel>(new Channel(this, wakeupFd_)))
 {
     LOG_DEBUG("Eventloop created %p in thread %d\n", this, threadId_);
     if(t_loopInThisThread)
