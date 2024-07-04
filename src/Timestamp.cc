@@ -19,7 +19,7 @@ std::string Timestamp::ToString() const
 {
     tm* tm_local = localtime(&microsenconds_since_epoch_);
     char buf[128] = {0};
-    snprintf(buf, 128, "%4d/%2d/%2d %2d/%2d/%2d",
+    snprintf(buf, 128, "%4d/%02d/%02d %02d:%02d:%02d",
         tm_local->tm_year + 1900,
         tm_local->tm_mon + 1,
         tm_local->tm_mday,

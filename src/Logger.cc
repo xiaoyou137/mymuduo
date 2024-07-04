@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "Logger.h"
+#include "Timestamp.h"
 
 // 获取单例对象
 Logger &Logger::instance()
@@ -18,24 +19,7 @@ void Logger::setLogLevel(int level)
 // 输出日志
 void Logger::log(std::string msg)
 {
-    switch (logLevel_)
-    {
-    case INFO:
-        std::cout << "[INFO] ";
-        break;
-    case ERROR:
-        std::cout << "[ERROR] ";
-        break;
-    case FATAL:
-        std::cout << "[FATAL] ";
-        break;
-    case DEBUG:
-        std::cout << "[DEBUG] ";
-        break;
-    default:
-        break;
-    }
 
-    std::cout << "print time : " << msg << std::endl;
+    std::cout << Timestamp::now().ToString() << " " << msg << std::endl;
     
 }

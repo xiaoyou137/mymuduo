@@ -10,50 +10,50 @@
  * @brief 定义LOG宏
  */
 
-#define LOG_INFO(logmsgfmt, ...)                                                 \
-    do                                                                           \
-    {                                                                            \
-        std::cout << __FILE__ << ":" << __LINE__ << ":" << __FUNCTION__ << ": "; \
-        Logger &logger = Logger::instance();                                     \
-        logger.setLogLevel(INFO);                                                \
-        char buf[1024] = {0};                                                    \
-        snprintf(buf, 1024, logmsgfmt, ##__VA_ARGS__);                           \
-        logger.log(buf);                                                         \
+#define LOG_INFO(logmsgfmt, ...)                                                             \
+    do                                                                                       \
+    {                                                                                        \
+        std::cout << "[INFO]" << __FILE__ << ":" << __LINE__ << ":" << __FUNCTION__ << ": "; \
+        Logger &logger = Logger::instance();                                                 \
+        logger.setLogLevel(INFO);                                                            \
+        char buf[1024] = {0};                                                                \
+        snprintf(buf, 1024, logmsgfmt, ##__VA_ARGS__);                                       \
+        logger.log(buf);                                                                     \
     } while (0)
 
-#define LOG_ERROR(logmsgfmt, ...)                                                \
-    do                                                                           \
-    {                                                                            \
-        std::cout << __FILE__ << ":" << __LINE__ << ":" << __FUNCTION__ << ": "; \
-        Logger &logger = Logger::instance();                                     \
-        logger.setLogLevel(ERROR);                                               \
-        char buf[1024] = {0};                                                    \
-        snprintf(buf, 1024, logmsgfmt, ##__VA_ARGS__);                           \
-        logger.log(buf);                                                         \
+#define LOG_ERROR(logmsgfmt, ...)                                                             \
+    do                                                                                        \
+    {                                                                                         \
+        std::cout << "[ERROR]" << __FILE__ << ":" << __LINE__ << ":" << __FUNCTION__ << ": "; \
+        Logger &logger = Logger::instance();                                                  \
+        logger.setLogLevel(ERROR);                                                            \
+        char buf[1024] = {0};                                                                 \
+        snprintf(buf, 1024, logmsgfmt, ##__VA_ARGS__);                                        \
+        logger.log(buf);                                                                      \
     } while (0)
 
-#define LOG_FATAL(logmsgfmt, ...)                                                \
-    do                                                                           \
-    {                                                                            \
-        std::cout << __FILE__ << ":" << __LINE__ << ":" << __FUNCTION__ << ": "; \
-        Logger &logger = Logger::instance();                                     \
-        logger.setLogLevel(FATAL);                                               \
-        char buf[1024] = {0};                                                    \
-        snprintf(buf, 1024, logmsgfmt, ##__VA_ARGS__);                           \
-        logger.log(buf);                                                         \
-        exit(-1);                                                                \
+#define LOG_FATAL(logmsgfmt, ...)                                                             \
+    do                                                                                        \
+    {                                                                                         \
+        std::cout << "[FATAL]" << __FILE__ << ":" << __LINE__ << ":" << __FUNCTION__ << ": "; \
+        Logger &logger = Logger::instance();                                                  \
+        logger.setLogLevel(FATAL);                                                            \
+        char buf[1024] = {0};                                                                 \
+        snprintf(buf, 1024, logmsgfmt, ##__VA_ARGS__);                                        \
+        logger.log(buf);                                                                      \
+        exit(-1);                                                                             \
     } while (0)
 
 #ifdef MUDEBUG
-#define LOG_DEBUG(logmsgfmt, ...)                                                \
-    do                                                                           \
-    {                                                                            \
-        std::cout << __FILE__ << ":" << __LINE__ << ":" << __FUNCTION__ << ": "; \
-        Logger &logger = Logger::instance();                                     \
-        logger.setLogLevel(DEBUG);                                               \
-        char buf[1024] = {0};                                                    \
-        snprintf(buf, 1024, logmsgfmt, ##__VA_ARGS__);                           \
-        logger.log(buf);                                                         \
+#define LOG_DEBUG(logmsgfmt, ...)                                                             \
+    do                                                                                        \
+    {                                                                                         \
+        std::cout << "[DEBUG]" << __FILE__ << ":" << __LINE__ << ":" << __FUNCTION__ << ": "; \
+        Logger &logger = Logger::instance();                                                  \
+        logger.setLogLevel(DEBUG);                                                            \
+        char buf[1024] = {0};                                                                 \
+        snprintf(buf, 1024, logmsgfmt, ##__VA_ARGS__);                                        \
+        logger.log(buf);                                                                      \
     } while (0)
 #else
 #define LOG_DEBUG(logmsgfmt, ...)

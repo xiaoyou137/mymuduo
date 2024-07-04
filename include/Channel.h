@@ -33,7 +33,7 @@ public:
     void setCloseCallback(const EventCallback& cb) { closeCallback_ = cb; }
 
     // 防止当Channel被remove后，还在执行回调
-    void tie(std::shared_ptr<void>&);
+    void tie(const std::shared_ptr<void>&);
 
     int fd() const { return fd_; }
     int events() const { return events_; }
